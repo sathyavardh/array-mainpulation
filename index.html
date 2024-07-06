@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="text-align: center; background-color: lightblue;">
+    <h1>JavaScript Arrays</h1>
+    <h2>Array Manipulation</h2>
+    <form id="arrayform">
+
+        <h3 style="color: black;">Input Array Elements</h3>
+        <label for="array[]">Input 1</label>
+        <input type="text" name="array[]" placeholder="Enter a thing"><br><br>
+        <label for="array[]">Input 2</label>
+        <input type="text" name="array[]" placeholder="Enter a thing"> <br><br>
+        <label for="array[]">Input 3</label>
+        <input type="text" name="array[]" placeholder="Enter a thing"> <br><br>
+        <label for="array[]">Input 4</label>
+        <input type="text" name="array[]" placeholder="Enter a thing"> <br><br>
+        <label for="array[]">Input 5</label>
+        <input type="text" name="array[]" placeholder="Enter a thing"> <br><br>
+
+        <button type="button" onclick="sortArray()">Sorting</button>
+        <button type="button" onclick="filterArray()">Filter</button>
+        <button type="button" onclick="mapArray()">Mapping</button>
+        <button type="button" onclick="reduceArray()">Reducing</button>
+
+
+    </form>
+
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+
+
+    <script>
+        function sortArray() {
+            const inputs = document.getElementsByName('array[]');
+            const thing = Array.from(inputs).map(input => input.value);
+        
+            document.getElementById("demo1").innerHTML = "Original Array: [" + thing.join(", ") + "]";
+            
+            thing.sort();
+            document.getElementById("demo2").innerHTML = "Sorted Array: [" + thing.join(", ") + "]";
+        }
+
+        function filterArray(){
+            const inputs = document.getElementsByName('array[]');
+            const values = Array.from(inputs).map(input => input.value);
+            const filteredValues = values.filter(num);
+            document.getElementById("demo1").innerHTML = "Original Array: [" + values.join(", ") + "]";
+            document.getElementById("demo3").innerHTML = "Filtered Array: ["+filteredValues.join(",")+"]";
+
+        }
+
+        function num(n){
+            return !isNaN(n) && n>=200;
+        }
+
+        function mapArray(){
+            const inputs = document.getElementsByName('array[]');
+            const values = Array.from(inputs).map(input => input.value);
+            const thing = Array.from(inputs).map(input => input.value*2);
+            document.getElementById("demo1").innerHTML = "Original Array: [" + values.join(", ") + "]";
+            document.getElementById("demo4").innerHTML = "Mapped Array: ["+ thing.join(",")+"]";
+        }
+
+        function reduceArray(){
+            const inputs = document.getElementsByName('array[]');
+            const values = Array.from(inputs).map(input => parseFloat(input.value) || 0);
+            const sum = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+            document.getElementById("demo1").innerHTML = "Original Array: [" + values.join(", ") + "]";
+            document.getElementById("demo5").innerHTML = "Reduce Array: ["+sum+"]";
+        }
+    </script>
+</body>
+</html>
